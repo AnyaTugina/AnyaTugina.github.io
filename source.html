@@ -2,151 +2,286 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Запрет на масштабирование -->
-    <title>СУРСЫ - SypzaSource</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>bio Sypza</title>
     <style>
         body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
-            color: white;
-            overflow-x: hidden; /* Предотвращает боковую прокрутку */
+            height: 90vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
-        h1, h2, p {
-            margin: 0;
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: transparent;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10%;
+            color: white;
+            font-size: 1em; 
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .content-container {
+            padding: 20px; 
+            border-radius: 10px;
+            background-color: #111;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            width: 90%; 
+            max-width: 600px; 
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px; 
+            text-shadow: 0 0 5px white, 0 0 10px white; 
+        }
+
+        .image-container {
             text-align: center;
         }
 
-        .sources-page {
-            display: flex; /* Используем flexbox для выравнивания */
-            flex-direction: column; /* Вертикальное выравнивание */
-            align-items: center; /* Центрируем содержимое */
-            padding: 0; /* Убираем отступы */
-            width: 100%; /* Занимает всю ширину экрана */
-        }
-
-        .header {
-            position: relative; /* Для абсолютного позиционирования заголовка */
-            background-color: #111; /* Темный цвет заголовка */
-            padding: 20px; /* Увеличенный отступ для заголовка */
-            width: 100%; /* Занимает всю ширину экрана */
-        }
-
-        .back-button {
-            background-color: #3a3a3a;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            position: absolute; /* Абсолютное позиционирование кнопки */
-            left: 30px; /* Отступ от левого края (выравнен чуть правее) */
-        }
-
-        .header h1 {
-            text-align: center; /* Центрирует заголовок */
-            font-size: 2em; /* Увеличенный размер шрифта для заголовка */
-        }
-
-        .search-bar {
-            display: flex; /* Используем flexbox для выравнивания */
-            flex-direction: column; /* Элементы располагаются в колонку */
-            align-items: center; /* Центрируем элементы */
-            margin-top: 20px; /* Отступ сверху для формы поиска */
-            width: 90%; /* Ширина формы поиска */
-        }
-
-        .search-bar input {
-            width: 80%; /* Ширина поля ввода поиска меньше */
-            padding: 8px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #282828;
-            color: white;
-        }
-
-        .search-bar select {
-            width: 85%; /* Ширина выпадающего списка чуть больше */
-            padding: 8px;
-            border: 1px solid #555;
-            border-radius: 5px;
-            background-color: #282828;
-            color: white;
-            margin-top: 10px; /* Отступ сверху для выпадающего списка */
-        }
-
-        .source-box {
-            background-color: #282828;
-            color: white;
-            margin-top: 20px; /* Отступ сверху для блока источника */
-            padding: 10px;
+        img {
             border-radius: 10px;
-            max-width: 90%; /* Максимальная ширина блока источника */
+            max-width: 100%;
+            height: auto; 
         }
 
-        .source-box img {
-            display: block;
-            width: 100%;
-            max-width: 300px; /* Ограничиваем максимальную ширину изображения */
-            margin: 0 auto; /* Центрируем изображение */
-            border-radius: 5px;
+        .header-line {
+            border-top: 1px solid white;
+            margin: 5px 0;
         }
 
-        .source-box h2, 
-        .source-box p {
-           text-align: center; /* Центрируем текст в блоке источника */
-           margin-bottom: 10px; /* Отступ снизу для текста */
+        .content {
+            padding-top: 5px;
+            text-align: center;
         }
 
-        .source-box button {
-            background-color: #3a3a3a;
-            color: white;
-            border: none;
-            padding: 10px;
-            width: calc(100% - 1px); /* Ширина кнопки чуть меньше полной ширины с учетом отступа */
-            margin-top: 10px; /* Отступ сверху для кнопок */
-            border-radius: 5px;
+        .button-container {
+            display: flex;
+            justify-content: center; 
         }
 
-        .source-box button:hover {
-           background-color: #565656;
-       }
+        .button {
+            display: inline-flex; 
+            justify-content: center; 
+            align-items: center; 
+            background-color: #111; 
+            color: #ffffff; 
+            border-radius: 5px; 
+            padding: 8px 16px; 
+            font-size: 0.8rem; 
+             cursor :pointer ; 
+             text-decoration :none ; 
+             margin-left :5px ; 
+             transition :background-color 0.3s; 
+         }
+
+         .button:hover {
+             background-color:#222; 
+         }
+
+         .friends-list {
+             display: none; 
+             margin-top: -10px; 
+         }
+
+         .friend-toggle, .friend-toggle-collapse {
+             cursor: pointer;
+             color: #ffffff; 
+             margin-top: 10px; 
+             display:block; 
+             text-align:center; 
+         }
+
+         .friend-toggle-collapse {
+             margin-top: 10px; 
+         }
+
+         @media (max-width: 600px) { 
+             h1 {
+                 font-size: 12px; 
+                 text-shadow:  0 0 5px white, 0 0 10px white; 
+             }
+             
+             .content-container {
+                 padding: 10px; 
+                 font-size: 12px; 
+             }
+             
+             .button {
+                 padding: 4px 8px; 
+                 font-size: 0.6rem; 
+             }
+         }
     </style>
 </head>
 <body>
+    <div class="snow"></div>
+    <div class="content-container">
+        <div class="image-container">
+           <img src="https://i.pinimg.com/originals/49/6a/b7/496ab74403c2bc6d356a01bb7c661524.gif" alt="Image">
+       </div>
 
-<!-- Страница Сурсов -->
-<div class="sources-page">
-    <div class="header">
-        <button class="back-button" onclick="location.href='index.html'"> &lt; </button>
-        <h1>SypzaSource</h1>
+       <h1 id="name">安雅图戈娃·亚历山大 | 安雅图戈娃·亚历山大</h1>
+
+       <div class="content">Информация обо мне:</div>
+       <div class="header-line"></div>
+       <div class="content">Никнейм: Sypza</div>
+       <div class="content">Хобби: Кодирование</div>
+       <div class="content">Страна: Российская Федерация</div>
+
+       <div class="header-line"></div>
+       <div class="content">Мои друзья:</div>
+       <div class="content">Arion</div>
+       <div class="content">Flainn1</div>
+       <div class="content">Lacoste</div>
+       <span class="friend-toggle" id="toggleMore" onclick="toggleFriends()">[ Ещё ] </span>
+       <div class="friends-list" id="friendsList">
+           <div class="content" style="margin-top:10px;">Tora</div> 
+           <div class="content">mvdN3IRU</div>
+           <div class="content">ratataez</div>
+           <span class="friend-toggle-collapse" onclick="toggleFriends()">[ Свернуть ]</span></span>
+       </div>
+
+       <div class="header-line"></div>
+       <div class="content">Активен в этих чатах:</div>
+       <div class="content">Dota 2 / ru hub chat</div>
+       <div class="content">Flainn chat</div>
+
+       <div class="header-line"></div>
+       <div class="content">ССЫЛКИ</div>
+       <div class="button-container">
+           <a href="https://t.me/Sypza" class="button">Telegram Account</a>
+           <a href="https://t.me/SypzaSource" class="button">Telegram Channel</a>
+       </div>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Поиск...">
-        <select>
-            <option>По количеству скачиваний (убывание)</option>
-        </select>
-    </div>
+    <script>
+        const snowContainer = document.querySelector('.snow');
+        const snowflakes = 100;
 
-    <div class="source-box">
-        <img src="login menu.png" alt="Login Menu">
-        <h2>Login Menu</h2>
-        <p>- данный сурс представляет собой авторизацию при входе в чит<br>
-           - замените параметры в файле на свои<br>
-           - используйте базу данных под ключ
-        </p>
-        <button onclick="location.href='https://t.me/sypza'">Задать вопрос</button>
-        <button onclick="showSourceText()">Скачать сурс</button>
-    </div>
-</div>
+        for (let i = 0; i < snowflakes; i++) {
+           const snowflake = document.createElement('div');
+           snowflake.classList.add('snowflake');
+           snowflake.textContent = '❄';
+           snowflake.style.left = Math.random() * 100 + 'vw';
+           snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+           snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+           snowContainer.appendChild(snowflake);
+        }
 
-<script>
-    function showSourceText() {
-        alert("Текст сурса: Положите сюда ваш код сурса.");
-    }
-</script>
+        class TextScramble {
+           constructor(el) {
+               this.el = el;
+               this.chars = '!@#$%^&*()_-=+{}:"|<>?,./;';
+               this.update = this.update.bind(this);
+           }
+           
+           setText(newText) {
+               const oldText = this.el.innerText;
+               const length = Math.max(oldText.length, newText.length);
+               const promise = new Promise((resolve) => this.resolve = resolve);
+               this.queue = [];
+               
+               for (let i = 0; i < length; i++) {
+                   const from = oldText[i] || '';
+                   const to = newText[i] || '';
+                   const start = Math.floor(Math.random() * 40);
+                   const end = start + Math.floor(Math.random() * 40);
+                   this.queue.push({ from, to, start, end });
+               }
+               
+               cancelAnimationFrame(this.frameRequest);
+               this.frame = 0;
+               this.update();
+               return promise;
+           }
+           
+           update() {
+               let output = '';
+               let complete = 0;
 
+               for (let i = 0, n = this.queue.length; i < n; i++) {
+                   let { from, to, start, end, char } = this.queue[i];
+                   if (this.frame >= end) {
+                       complete++;
+                       output += to;
+                   } else if (this.frame >= start) {
+                       if (!char || Math.random() < 0.28) {
+                           char = this.randomChar();
+                           this.queue[i].char = char;
+                       }
+                       output += `<span class="dud">${char}</span>`;
+                   } else {
+                       output += from;
+                   }
+               }
+               
+               this.el.innerHTML = output;
+
+               if (complete === this.queue.length) {
+                   this.resolve();
+               } else {
+                   this.frameRequest = requestAnimationFrame(this.update);
+                   this.frame++;
+               }
+           }
+           
+           randomChar() {
+               return this.chars[Math.floor(Math.random() * this.chars.length)];
+           }
+        }
+
+        const el = document.getElementById('name');
+        const fx = new TextScramble(el);
+
+        function animateText() {
+           fx.setText('SYPZA').then(() => {
+               setTimeout(() => animateText(), 1000);
+           });
+        }
+
+        animateText();
+
+        function toggleFriends() {
+           const friendsList = document.getElementById('friendsList');
+           const toggleButton = document.getElementById('toggleMore');
+
+           if (friendsList.style.display === 'none' || friendsList.style.display === '') {
+               friendsList.style.display = 'block';
+               toggleButton.style.display = 'none'; // Скрыть "Ещё"
+           } else {
+               friendsList.style.display = 'none';
+               toggleButton.style.display = 'block'; // Показать "Ещё"
+           }
+        }
+    </script>
 </body>
+
 </html>
