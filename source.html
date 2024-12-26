@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Запрет на масштабирование -->
+    <title>СУРСЫ - SypzaSource</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            overflow-x: hidden; /* Предотвращает боковую прокрутку */
+        }
+
+        h1, h2, p {
+            margin: 0;
+            text-align: center;
+        }
+
+        .sources-page {
+            display: flex; /* Используем flexbox для выравнивания */
+            flex-direction: column; /* Вертикальное выравнивание */
+            align-items: center; /* Центрируем содержимое */
+            padding: 0; /* Убираем отступы */
+            width: 100%; /* Занимает всю ширину экрана */
+        }
+
+        .header {
+            position: relative; /* Для абсолютного позиционирования заголовка */
+            background-color: #111; /* Темный цвет заголовка */
+            padding: 20px; /* Увеличенный отступ для заголовка */
+            width: 100%; /* Занимает всю ширину экрана */
+        }
+
+        .back-button {
+            background-color: #3a3a3a;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute; /* Абсолютное позиционирование кнопки */
+            left: 30px; /* Отступ от левого края (выравнен чуть правее) */
+        }
+
+        .header h1 {
+            text-align: center; /* Центрирует заголовок */
+            font-size: 2em; /* Увеличенный размер шрифта для заголовка */
+        }
+
+        .search-bar {
+            display: flex; /* Используем flexbox для выравнивания */
+            flex-direction: column; /* Элементы располагаются в колонку */
+            align-items: center; /* Центрируем элементы */
+            margin-top: 20px; /* Отступ сверху для формы поиска */
+            width: 90%; /* Ширина формы поиска */
+        }
+
+        .search-bar input {
+            width: 80%; /* Ширина поля ввода поиска меньше */
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #282828;
+            color: white;
+        }
+
+        .search-bar select {
+            width: 85%; /* Ширина выпадающего списка чуть больше */
+            padding: 8px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #282828;
+            color: white;
+            margin-top: 10px; /* Отступ сверху для выпадающего списка */
+        }
+
+        .source-box {
+            background-color: #282828;
+            color: white;
+            margin-top: 20px; /* Отступ сверху для блока источника */
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 90%; /* Максимальная ширина блока источника */
+        }
+
+        .source-box img {
+            display: block;
+            width: 100%;
+            max-width: 300px; /* Ограничиваем максимальную ширину изображения */
+            margin: 0 auto; /* Центрируем изображение */
+            border-radius: 5px;
+        }
+
+        .source-box h2, 
+        .source-box p {
+           text-align: center; /* Центрируем текст в блоке источника */
+           margin-bottom: 10px; /* Отступ снизу для текста */
+        }
+
+        .source-box button {
+            background-color: #3a3a3a;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: calc(100% - 1px); /* Ширина кнопки чуть меньше полной ширины с учетом отступа */
+            margin-top: 10px; /* Отступ сверху для кнопок */
+            border-radius: 5px;
+        }
+
+        .source-box button:hover {
+           background-color: #565656;
+       }
+    </style>
+</head>
+<body>
+
+<!-- Страница Сурсов -->
+<div class="sources-page">
+    <div class="header">
+        <button class="back-button" onclick="location.href='index.html'"> &lt; </button>
+        <h1>SypzaSource</h1>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Поиск...">
+        <select>
+            <option>По количеству скачиваний (убывание)</option>
+        </select>
+    </div>
+
+    <div class="source-box">
+        <img src="login menu.png" alt="Login Menu">
+        <h2>Login Menu</h2>
+        <p>- данный сурс представляет собой авторизацию при входе в чит<br>
+           - замените параметры в файле на свои<br>
+           - используйте базу данных под ключ
+        </p>
+        <button onclick="location.href='https://t.me/sypza'">Задать вопрос</button>
+        <button onclick="showSourceText()">Скачать сурс</button>
+    </div>
+</div>
+
+<script>
+    function showSourceText() {
+        alert("Текст сурса: Положите сюда ваш код сурса.");
+    }
+</script>
+
+</body>
+</html>
